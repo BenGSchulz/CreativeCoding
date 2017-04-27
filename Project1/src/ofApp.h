@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxJSON.h"
+#include "Tracks.hpp"
 
 class ofApp : public ofBaseApp{
 
@@ -9,6 +10,7 @@ class ofApp : public ofBaseApp{
 		void setup();
 		void update();
 		void draw();
+		void exit();
 
 		void keyPressed(int key);
 		void keyReleased(int key);
@@ -22,6 +24,12 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 	
+	bool start;
+	
+	int numTracks = 5;
+	
 	ofxJSONElement json;
+	
+	vector<Tracks *> tracks;
 	
 };
