@@ -7,3 +7,23 @@
 //
 
 #include "LyricView.hpp"
+
+//LyricView::LyricView() {
+//	
+//}
+
+void LyricView::setup() {
+	
+}
+
+void LyricView::update() {
+	
+}
+
+void LyricView::draw() {
+	
+}
+
+void LyricView::exit() {
+	
+}

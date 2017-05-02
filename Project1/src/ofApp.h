@@ -2,7 +2,11 @@
 
 #include "ofMain.h"
 #include "ofxJSON.h"
+#include "StartView.hpp"
+#include "ChartView.hpp"
+#include "LyricView.hpp"
 #include "Tracks.hpp"
+#include "State.hpp"
 
 class ofApp : public ofBaseApp{
 
@@ -11,25 +15,19 @@ class ofApp : public ofBaseApp{
 		void update();
 		void draw();
 		void exit();
+	
+		void mouseMoved(int x, int y);
+	
+	
 
-		void keyPressed(int key);
-		void keyReleased(int key);
-		void mouseMoved(int x, int y );
-		void mouseDragged(int x, int y, int button);
-		void mousePressed(int x, int y, int button);
-		void mouseReleased(int x, int y, int button);
-		void mouseEntered(int x, int y);
-		void mouseExited(int x, int y);
-		void windowResized(int w, int h);
-		void dragEvent(ofDragInfo dragInfo);
-		void gotMessage(ofMessage msg);
+	State *state;
 	
-	bool start;
+	//int state;
 	
-	int numTracks = 5;
+	StartView startView;
 	
-	ofxJSONElement json;
+	ChartView chartView;
 	
-	vector<Tracks *> tracks;
+	LyricView lyricView;
 	
 };
