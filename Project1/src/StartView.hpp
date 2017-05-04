@@ -34,7 +34,7 @@ public:
 	ofColor buttonColor;
 	
 	ofxPanel gui;
-	ofxButton chart;
+	ofxToggle chart;
 	
 	//bool mouseClicked = false;
 	

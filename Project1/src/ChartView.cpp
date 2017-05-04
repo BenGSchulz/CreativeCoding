@@ -50,6 +50,8 @@ void ChartView::setup(){
 	
 	gui.setup();
 	gui.add(back.setup("Back"));
+	
+	back = false;
 }
 
 //--------------------------------------------------------------
@@ -62,7 +64,7 @@ void ChartView::update(){
 //		mouseClicked = true;
 //	}
 	checkMouse();
-	
+	back = false;
 
 	
 	//checkLyrics();
@@ -94,13 +96,13 @@ void ChartView::draw(){
 		tracks[i]->draw();
 	}
 	
-	backFont.drawString("BACK", 10, 40);
-	
-	ofSetRectMode(OF_RECTMODE_CORNER);
-	ofSetColor(150);
-	ofDrawRectRounded(10, 10, 35, 25, 5);
-	ofSetColor(buttonColor);
-	ofDrawRectRounded(12, 12, 30, 20, 5);
+//	backFont.drawString("BACK", 10, 40);
+//	
+//	ofSetRectMode(OF_RECTMODE_CORNER);
+//	ofSetColor(150);
+//	ofDrawRectRounded(10, 10, 35, 25, 5);
+//	ofSetColor(buttonColor);
+//	ofDrawRectRounded(12, 12, 30, 20, 5);
 	
 	
 	//string tracks[20];
@@ -155,18 +157,18 @@ void ChartView::checkMouse() {
 		}
 	}
 	
-	if (!(x < 10 || x > 45 || y < 15 || y > 40)) {
+	//if (!(x < 10 || x > 45 || y < 15 || y > 40)) {
 		
 		buttonColor.set(127, 0, 0);
 		
-		if (ofGetMousePressed()) {
+		if (back) {
 			//mouseClicked = false;
 			ofApp *app = (ofApp *)ofGetAppPtr();
 			app->state = &app->startView;
 		}
-	} else {
-		buttonColor.set(179, 0, 0);
-	}
+//	} else {
+//		buttonColor.set(179, 0, 0);
+//	}
 }
 
 void ChartView::keyPressed(int key) {

@@ -48,7 +48,7 @@ public:
 	ofColor buttonColor;
 	
 	ofxPanel gui;
-	ofxButton back;
+	ofxToggle back;
 	
 	//bool lyrics = false;
 	

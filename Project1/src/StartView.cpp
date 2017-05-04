@@ -23,6 +23,8 @@ void StartView::setup() {
 	
 	gui.setup();
 	gui.add(chart.setup("Go to chart"));
+	
+	chart = false;
 
 }
 
@@ -32,12 +34,14 @@ void StartView::update() {
 //	}
 
 	mouseMoved();
+	chart = false;
 }
 
 void StartView::draw() {
 	ofBackground(0);
 	ofSetRectMode(OF_RECTMODE_CENTER);
 	
+	ofSetColor(255);
 	gui.draw();
 	
 	ofSetColor(150);
@@ -63,15 +67,17 @@ void StartView::mouseMoved() {
 		
 		buttonColor.set(127, 0, 0);
 		
-		if (ofGetMousePressed()) {
-			//mouseClicked = false;
-			ofApp *app = (ofApp *)ofGetAppPtr();
-			app->state = &app->chartView;
 
-			//goChart = true;
-		}
 	} else {
 		buttonColor.set(179, 0, 0);
+	}
+	
+	if (chart) {
+		//mouseClicked = false;
+		ofApp *app = (ofApp *)ofGetAppPtr();
+		app->state = &app->chartView;
+		
+		//goChart = true;
 	}
 	
 	//ofLogNotice() << "x: " + x + " y: " + y;
