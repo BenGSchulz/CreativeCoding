@@ -24,7 +24,7 @@ PROJECT 1: LYRICAL
 
 -- BUILD INSTRUCTIONS -> use ofxJSON https://github.com/jeffcrouse/ofxJSON for addon. 
 
--- USAGE -> Use the mouse to interact with button at start. Then use the mouse to click on the song you would like to see the lyrics for. 	 (This is buggy, as multiple songs can be highlighted at once and the lyrics get confused sometimes, also the buttons double click so 		 they can send you to a song immediately if it's bubble happens to be where your mouse is when you click the starting button). There are 	  also back buttons on the chart and lyric pages that suffer the same double clicking bug. To change the number of songs on the chart, 		 find the URL request in the ChartView.cpp and change the page_size value. 
+-- USAGE -> Use the mouse to interact with button at start. Then use the mouse to click on the song you would like to see the lyrics for. 	 (This is buggy, as multiple songs can be highlighted at once and the lyrics get confused sometimes, also the buttons double click so 		 they can send you to a song immediately if it's bubble happens to be where your mouse is when you click the starting button). There are 	  also back buttons on the chart and lyric pages that suffer the same double clicking bug. I think this has to do with the button still      being pressed down when entering the new scene because the scene change is too fast (need some way to delay the scene change). To          change the number of songs on the chart, find the URL request in the ChartView.cpp and change the page_size value. 
 
 -- VIDEO -> https://youtu.be/wBiO7DyM8us (This is video with button bugs still), I have added some work arounds (not pretty, just gui        element) in the guiButton branch
 
