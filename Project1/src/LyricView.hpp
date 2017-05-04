@@ -12,6 +12,8 @@
 #include "ofMain.h"
 #include "State.hpp"
 
+#include "ofxJSON.h"
+
 #include <stdio.h>
 
 class LyricView : public State {
@@ -25,7 +27,28 @@ public:
 	void draw();
 	void exit();
 	
+	void checkMouse();
+	
 	ofTrueTypeFont lyricFont;
+	ofTrueTypeFont titleFont;
+	ofTrueTypeFont artistFont;
+	
+	ofxJSONElement jsonLyrics;
+	
+	static string trackID;
+	static string track;
+	static string artist;
+	
+	string lyricBody;
+	//string id1, id2, id3, id4, id5;
+	
+	float x, y, scrollSpeed;
+	
+	int artistOffset = 100;
+	
+	bool oversize = false;
+	
+	ofColor buttonColor;
 	
 };
 

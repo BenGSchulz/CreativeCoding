@@ -26,11 +26,15 @@ public:
 	void exit();
 	
 	void mouseMoved();
+	void goToChart();
 	
 	ofTrueTypeFont titleFont;
 	ofTrueTypeFont textFont;
 	
 	ofColor buttonColor;
+	
+	bool goChart = false;
+	
 };
 
 

@@ -17,7 +17,7 @@
 
 #include <stdio.h>
 
-class ChartView : public State{
+class ChartView : public State, public ofBaseApp {
 	
 public:
 	
@@ -28,15 +28,25 @@ public:
 	void draw();
 	void exit();
 	
+	void keyPressed(int key);
+	
+	void checkMouse();
+	
+	void checkLyrics();
 	
 
 	
 	int numTracks = 5;
 	
 	ofxJSONElement jsonChart;
-	ofxJSONElement jsonLyrics;
+	
+	ofTrueTypeFont backFont;
 	
 	vector<Tracks *> tracks;
+	
+	ofColor buttonColor;
+	
+	bool lyrics = false;
 	
 };
 

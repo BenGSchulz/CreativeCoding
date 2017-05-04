@@ -5,7 +5,6 @@ void ofApp::setup(){
 
 	startView.setup();
 	chartView.setup();
-	lyricView.setup();
 	
 	//state = 1;
 	

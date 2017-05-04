@@ -1,6 +1,9 @@
 #include "ofMain.h"
 #include "ofApp.h"
 #include "Tracks.hpp"
+#include "LyricView.hpp"
+#include "ChartView.hpp"
+#include "StartView.hpp"
 
 //========================================================================
 int main( ){
