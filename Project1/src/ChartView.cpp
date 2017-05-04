@@ -47,6 +47,9 @@ void ChartView::setup(){
 	backFont.load(OF_TTF_SANS, 12);
 	
 	buttonColor.set(179, 0, 0);
+	
+	gui.setup();
+	gui.add(back.setup("Back"));
 }
 
 //--------------------------------------------------------------
@@ -55,9 +58,14 @@ void ChartView::update(){
 	for (int i = 0; i < tracks.size(); i++) {
 		tracks[i]->update();
 	}
-	
+//	if (ofGetMousePressed()) {
+//		mouseClicked = true;
+//	}
 	checkMouse();
-	checkLyrics();
+	
+
+	
+	//checkLyrics();
 	
 	
 //	for (int i = 0; i < tracks.size(); i++) {
@@ -78,6 +86,9 @@ void ChartView::draw(){
 	
 	ofBackground(0);
 	//ofSetColor(200, 50, 50);
+	
+	gui.draw();
+	
 	
 	for (int i = 0; i < tracks.size(); i++) {
 		tracks[i]->draw();
@@ -130,10 +141,14 @@ void ChartView::checkMouse() {
 		if (ofDist(x, y, tracks[i]->x, tracks[i]->y) < tracks[i]->radius) {
 			tracks[i]->color.set(127, 0, 0);
 			if (ofGetMousePressed()) {
+				//mouseClicked = false;
 				LyricView::trackID = tracks[i]->trackID;
 				LyricView::track = tracks[i]->track;
 				LyricView::artist = tracks[i]->artist;
-				lyrics = true;
+				ofApp *app = (ofApp *)ofGetAppPtr();
+				app->lyricView.setup();
+				app->state = &app->lyricView;
+				//lyrics = true;
 			}
 		} else {
 			tracks[i]->color.set(179, 0, 0);
@@ -145,6 +160,7 @@ void ChartView::checkMouse() {
 		buttonColor.set(127, 0, 0);
 		
 		if (ofGetMousePressed()) {
+			//mouseClicked = false;
 			ofApp *app = (ofApp *)ofGetAppPtr();
 			app->state = &app->startView;
 		}
@@ -154,19 +170,19 @@ void ChartView::checkMouse() {
 }
 
 void ChartView::keyPressed(int key) {
-	if (key == 49) {
+	if (key == ' ') {
 		ofApp *app = (ofApp *)ofGetAppPtr();
 		app->state = &app->startView;
 	}
 }
 
-void ChartView::checkLyrics() {
-	if (lyrics) {
-		lyrics = false;
-		ofApp *app = (ofApp *)ofGetAppPtr();
-		app->lyricView.setup();
-		app->state = &app->lyricView;
-	}
-}
+//void ChartView::checkLyrics() {
+//	if (lyrics) {
+//		lyrics = false;
+//		ofApp *app = (ofApp *)ofGetAppPtr();
+//		app->lyricView.setup();
+//		app->state = &app->lyricView;
+//	}
+//}
 
 

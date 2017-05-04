@@ -66,16 +66,24 @@ void LyricView::setup() {
 	scrollSpeed = 1;
 	
 	buttonColor.set(179,0,0);
+	
+	gui.setup();
+	gui.add(back.setup("Back"));
 
 	
 }
 
 void LyricView::update() {
 	y -= scrollSpeed;
+//	if (ofGetMousePressed()) {
+//		mouseClicked = true;
+//	}
 	checkMouse();
 }
 
 void LyricView::draw() {
+	gui.draw();
+	
 	ofSetColor(150);
 	titleFont.drawString(track, x, y);
 	artistFont.drawString(artist, x, y+50);
@@ -87,6 +95,8 @@ void LyricView::draw() {
 	ofDrawRectRounded(10, 10, 35, 25, 5);
 	ofSetColor(buttonColor);
 	ofDrawRectRounded(12, 12, 30, 20, 5);
+	
+
 }
 
 void LyricView::exit() {
@@ -102,6 +112,7 @@ void LyricView::checkMouse() {
 		buttonColor.set(127, 0, 0);
 		
 		if (ofGetMousePressed()) {
+			//mouseClicked = false;
 			ofApp *app = (ofApp *)ofGetAppPtr();
 			app->state = &app->chartView;
 		}
