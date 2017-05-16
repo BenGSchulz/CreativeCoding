@@ -14,10 +14,11 @@
 
 #include "ofxJSON.h"
 #include "Tracks.hpp"
+#include "ofxGui.h"
 
 #include <stdio.h>
 
-class ChartView : public State, public ofBaseApp {
+class ChartView : public State {
 	
 public:
 	
@@ -32,7 +33,7 @@ public:
 	
 	void checkMouse();
 	
-	void checkLyrics();
+	//void checkLyrics();
 	
 
 	
@@ -46,7 +47,12 @@ public:
 	
 	ofColor buttonColor;
 	
-	bool lyrics = false;
+	ofxPanel gui;
+	ofxToggle back;
+	
+	//bool lyrics = false;
+	
+	//bool mouseClicked = false;
 	
 };
 

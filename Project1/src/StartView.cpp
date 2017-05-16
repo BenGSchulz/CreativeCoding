@@ -20,17 +20,29 @@ void StartView::setup() {
 	textFont.load(OF_TTF_SANS, 30);
 	
 	buttonColor.set(179, 0, 0);
+	
+	gui.setup();
+	gui.add(chart.setup("Go to chart"));
+	
+	chart = false;
 
 }
 
 void StartView::update() {
+//	if (ofGetMousePressed()) {
+//		mouseClicked = true;
+//	}
+
 	mouseMoved();
-	goToChart();
+	chart = false;
 }
 
 void StartView::draw() {
 	ofBackground(0);
 	ofSetRectMode(OF_RECTMODE_CENTER);
+	
+	ofSetColor(255);
+	gui.draw();
 	
 	ofSetColor(150);
 	titleFont.drawString("LYRICAL", ofGetWidth()/2-(titleFont.stringWidth("LYRICAL")/2), ofGetHeight()/3);
@@ -55,21 +67,21 @@ void StartView::mouseMoved() {
 		
 		buttonColor.set(127, 0, 0);
 		
-		if (ofGetMousePressed()) {
-			goChart = true;
-		}
+
 	} else {
 		buttonColor.set(179, 0, 0);
+	}
+	
+	if (chart) {
+		//mouseClicked = false;
+		ofApp *app = (ofApp *)ofGetAppPtr();
+		app->state = &app->chartView;
+		
+		//goChart = true;
 	}
 	
 	//ofLogNotice() << "x: " + x + " y: " + y;
 }
 
-void StartView::goToChart() {
-	if (goChart) {
-		goChart = false;
-		ofApp *app = (ofApp *)ofGetAppPtr();
-		app->state = &app->chartView;
-	}
-}
+
 

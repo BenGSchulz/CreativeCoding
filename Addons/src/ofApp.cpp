@@ -11,6 +11,7 @@ void ofApp::setup(){
 	gui.add(velocity.setup("Velocity", 0.99, 0.9, 1.1));
 	gui.add(dissipation.setup("Dissipation", .99, .9, 1.1));
 	gui.add(obstacleT.setup(false));
+	gui.add(pos.setup("Position", ofVec2f(ofGetWidth()/2, ofGetHeight()/2), ofVec2f(0, 0), ofVec2f(ofGetWidth(), ofGetHeight())));
 	
 	width = 800;
 	height = 700;
@@ -28,7 +29,7 @@ void ofApp::setup(){
 	
 	// Adding constant forces
 	//
-	fluid.addConstantForce(ofPoint(width*0.5,height*0.5), ofPoint(0,-10), ofFloatColor(0.5,0.1,0.0), 10.f);
+	fluid.addConstantForce(ofPoint(30, 400), ofPoint(0,-10), ofFloatColor(0.6,0.3,0.0), 10.f);
 	
 	ofSetWindowShape(width, height);
 	

@@ -13,6 +13,7 @@
 #include "State.hpp"
 
 #include "ofxJSON.h"
+#include "ofxGui.h"
 
 #include <stdio.h>
 
@@ -47,8 +48,12 @@ public:
 	int artistOffset = 100;
 	
 	bool oversize = false;
+	//bool mouseClicked = false;
 	
 	ofColor buttonColor;
+	
+	ofxPanel gui;
+	ofxToggle back;
 	
 };
 

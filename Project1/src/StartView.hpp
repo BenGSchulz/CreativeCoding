@@ -11,6 +11,7 @@
 
 #include "ofMain.h"
 #include "State.hpp"
+#include "ofxGui.h"
 
 #include <stdio.h>
 
@@ -26,14 +27,16 @@ public:
 	void exit();
 	
 	void mouseMoved();
-	void goToChart();
 	
 	ofTrueTypeFont titleFont;
 	ofTrueTypeFont textFont;
 	
 	ofColor buttonColor;
 	
-	bool goChart = false;
+	ofxPanel gui;
+	ofxToggle chart;
+	
+	//bool mouseClicked = false;
 	
 };
 
