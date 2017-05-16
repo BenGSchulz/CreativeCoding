@@ -20,27 +20,27 @@ string LyricView::artist = "";
 void LyricView::setup() {
 	ofFile lyrics(ofToDataPath("lyrics.json"), ofFile::ReadWrite);
 	
-	string URL = "https://api.musixmatch.com/ws/1.1/track.lyrics.get?format=jsonp&callback=callback&track_id=" + trackID + "&apikey=926f6fc42dc0a0822fef9ca8491ac332";
+//	string URL = "https://api.musixmatch.com/ws/1.1/track.lyrics.get?format=jsonp&callback=callback&track_id=" + trackID + "&apikey=926f6fc42dc0a0822fef9ca8491ac332";
 	
-	ofHttpResponse lyricResponse = ofLoadURL(URL);
+	//ofHttpResponse lyricResponse = ofLoadURL(URL);
 	
 	if (lyrics.exists()) {
-		string data = lyricResponse.data;
-		if (data.find("callback") != string::npos) {
-			data = data.substr(9, data.length()-11);
-		}
-		lyrics << data;
-		ofLogNotice() << data;
+//		string data = lyricResponse.data;
+//		if (data.find("callback") != string::npos) {
+//			data = data.substr(9, data.length()-11);
+//		}
+//		lyrics << data;
+//		ofLogNotice() << data;
 		jsonLyrics.open("lyrics.json");
 	} else {
 		lyrics.create();
-		string data = lyricResponse.data;
-		if (data.find("callback") != string::npos) {
-			data = data.substr(9, data.length()-11);
-		}
-		lyrics << data;
-		ofLogNotice() << data;
-		jsonLyrics.open("lyrics.json");
+//		string data = lyricResponse.data;
+//		if (data.find("callback") != string::npos) {
+//			data = data.substr(9, data.length()-11);
+//		}
+//		lyrics << data;
+//		ofLogNotice() << data;
+//		jsonLyrics.open("lyrics.json");
 	}
 	
 	

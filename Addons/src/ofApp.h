@@ -28,6 +28,8 @@ class ofApp : public ofBaseApp{
 	ofxFloatSlider velocity, dissipation;
 	ofxToggle obstacleT;
 	ofxVec3Slider gravity;
+	ofxPointSlider pos;
+	
 	
 	ofxPanel gui;
 	

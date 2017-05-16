@@ -10,22 +10,22 @@
 #include "ofApp.h"
 #include "LyricView.hpp"
 
-void ChartView::setup(){
+void ChartView::setup() {
 	
 	ofSetVerticalSync(true);
 	ofEnableAntiAliasing();
 	
 	ofFile chart(ofToDataPath("chart.json"), ofFile::ReadWrite);
 	
-	ofHttpResponse chartResponse = ofLoadURL("https://api.musixmatch.com/ws/1.1/chart.tracks.get?format=jsonp&callback=callback&page=1&page_size=5&country=us&f_has_lyrics=true&apikey=926f6fc42dc0a0822fef9ca8491ac332");
+//	ofHttpResponse chartResponse = ofLoadURL("https://api.musixmatch.com/ws/1.1/chart.tracks.get?format=jsonp&callback=callback&page=1&page_size=5&country=us&f_has_lyrics=true&apikey=926f6fc42dc0a0822fef9ca8491ac332");
 	
 	if (chart.exists()) {
-		string data = chartResponse.data;
-		if (data.find("callback") != string::npos) {
-			data = data.substr(9, data.length()-11);
-		}
-		chart << data;
-		ofLogNotice() << data;
+//		string data = chartResponse.data;
+//		if (data.find("callback") != string::npos) {
+//			data = data.substr(9, data.length()-11);
+//		}
+//		chart << data;
+//		ofLogNotice() << data;
 		jsonChart.open("chart.json");
 	} else {
 		chart.create();
