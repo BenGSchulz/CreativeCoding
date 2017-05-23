@@ -1,0 +1,35 @@
+#pragma once
+
+#include "ofMain.h"
+#include "Circles.hpp"
+#include "StartState.hpp"
+#include "YearState.hpp"
+#include "MonthState.hpp"
+#include "AttackState.hpp"
+#include "ofxBox2d.h"
+
+
+class ofApp : public ofBaseApp{
+
+	public:
+		void setup();
+		void update();
+		void draw();
+
+		void keyPressed(int key);
+		void keyReleased(int key);
+		void mouseMoved(int x, int y );
+		void mouseDragged(int x, int y, int button);
+		void mousePressed(int x, int y, int button);
+		void mouseReleased(int x, int y, int button);
+	
+	ofxBox2d world;
+	
+	StartState startState;
+	YearState yearState;
+	MonthState monthState;
+	AttackState attackState;
+	
+	State *state;
+	
+};
