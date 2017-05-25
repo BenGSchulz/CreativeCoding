@@ -27,7 +27,9 @@ class ofApp : public ofBaseApp{
 	ofVideoGrabber grabber;
 	ofxMovingAverage pixelX, pixelY;
 	
-	ofxBox2d world;
+//	ofxBox2d world;
+	
+	ofRectangle screenRect;
 	
 	StartState startState;
 	YearState yearState;

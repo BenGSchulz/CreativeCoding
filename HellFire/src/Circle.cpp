@@ -17,13 +17,19 @@ Circle::Circle(string title, float radius) {
 
 //--------------------------------------------------------------
 void Circle::setup(){
-	ofApp *app = (ofApp*)ofGetAppPtr();
-	world = app->world;
+//	ofApp *app = (ofApp*)ofGetAppPtr();
+//	world = app->world;
+	
+	x = ofRandom(ofGetWidth());
+	y = ofRandom(ofGetHeight());
+	
+	xVel = ofRandom(1, 3);
+	yVel = ofRandom(1, 3);
 
-	circ.setup(world.getWorld(), ofRandom(ofGetWidth()), ofRandom(ofGetHeight()), radius);
-	xVel = ofRandom(-3, 3);
-	yVel = ofRandom(-3, 3);
-	circ.setVelocity(xVel, yVel);
+//	ofxBox2dCircle::setup(world.getWorld(), x, y, radius);
+//	setPhysics(.5, 1, 1);
+
+//	setVelocity(xVel, yVel);
 	
 	color.set(127, 12, 0);
 	
@@ -36,10 +42,15 @@ void Circle::update(){
 	pixelX = app->pixelX;
 	pixelY = app->pixelY;
 	
-	world.update();
+	x += xVel;
+	y += yVel;
+	
+//	world.update();
+	
+	//circ.setPosition(x, y);
 	
 	//Check laser location against the circle position
-//	if (ofDist(pixelX, pixelY, circ.getPosition().x, circ.getPosition().y) < radius) {
+//	if (ofDist(pixelX, pixelY, x, y) < radius) {
 //		if (app->state == &app->startState) {
 //			app->state == &app->yearState;
 //		} else if (app->state == &app->yearState) {
@@ -50,34 +61,44 @@ void Circle::update(){
 //	}
 	
 	
-	if (circ.getPosition().x-radius < 0) {
-		circ.setPosition(0+radius, circ.getPosition().y);
-		circ.setVelocity(-xVel, yVel);
+	if (x-radius < 0) {
+		x = 0+radius;
+		xVel = -xVel;
 	}
 	
-	if (circ.getPosition().x+radius > ofGetWidth()) {
-		circ.setPosition(ofGetWidth()-radius, circ.getPosition().y);
-		circ.setVelocity(-xVel, yVel);
+	if (x+radius > ofGetWidth()) {
+		x = ofGetWidth()-radius;
+		xVel = -xVel;
 	}
 	
-	if (circ.getPosition().y-radius < 0) {
-		circ.setPosition(0+radius, circ.getPosition().y);
-		circ.setVelocity(xVel, -yVel);
+	if (y-radius < 0) {
+		y = 0+radius;
+		yVel = -yVel;
 	}
 	
-	if (circ.getPosition().y+radius > ofGetHeight()) {
-		circ.setPosition(ofGetHeight()-radius, circ.getPosition().y);
-		circ.setVelocity(xVel, -yVel);
+	if (y+radius > ofGetHeight()) {
+		y = ofGetHeight()-radius;
+		yVel = -yVel;
 	}
 	
 }
 
 //--------------------------------------------------------------
 void Circle::draw(){
+//	glPushMatrix();
+//	glTranslatef(getPosition().x, getPosition().y, 0);
+//	
+//	ofSetColor(color);
+//	ofFill();
+//	ofDrawCircle(0, 0, getRadius());
+//	
+//	glPopMatrix();
+	
 	ofSetColor(color);
-	circ.draw();
+	ofDrawCircle(x, y, radius);
+	
 	ofSetColor(100);
-	font.drawString(title, circ.getPosition().x, circ.getPosition().y);
+	font.drawString(title, x-(font.stringWidth(title)/2), y);
 }
 
 //--------------------------------------------------------------
@@ -92,7 +113,7 @@ void Circle::keyReleased(int key){
 
 //--------------------------------------------------------------
 void Circle::mouseMoved(int x, int y ){
-	if (ofDist(x, y, circ.getPosition().x-(font.stringWidth(title)), circ.getPosition().y) < radius) {
+	if (ofDist(x, y, this->x, this->y) < radius) {
 		color.set(178, 17, 0);
 	}
 }
@@ -104,8 +125,13 @@ void Circle::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void Circle::mousePressed(int x, int y, int button){
+	
+}
+
+//--------------------------------------------------------------
+void Circle::mouseReleased(int x, int y, int button){
 	ofApp *app = (ofApp *)ofGetAppPtr();
-	if (ofDist(x, y, circ.getPosition().x, circ.getPosition().y) < radius) {
+	if (ofDist(x, y, this->x, this->y) < radius) {
 		if (app->state == &app->startState) {
 			app->state == &app->yearState;
 		} else if (app->state == &app->yearState) {
@@ -114,10 +140,4 @@ void Circle::mousePressed(int x, int y, int button){
 			app->state == &app->attackState;
 		}
 	}
-	
-}
-
-//--------------------------------------------------------------
-void Circle::mouseReleased(int x, int y, int button){
-	
 }

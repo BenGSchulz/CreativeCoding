@@ -13,7 +13,7 @@
 #include "ofMain.h"
 #include "ofxBox2d.h"
 
-class Circle : public ofBaseApp {
+class Circle : public ofBaseApp, ofxBox2dCircle {
 	
 public:
 	Circle(string title, float radius);
@@ -29,17 +29,19 @@ public:
 	void mousePressed(int x, int y, int button);
 	void mouseReleased(int x, int y, int button);
 	
-	ofxBox2d world;
-	ofxBox2dCircle circ;
+//	ofxBox2d world;
+//	ofxBox2dCircle circ;
 	
 	ofColor color;
+	
+	vector<Circle> circles;
 	
 	ofTrueTypeFont font;
 	
 	string title;
 	float radius;
 	
-	int xVel, yVel;
+	int x, y, xVel, yVel;
 	float pixelX, pixelY;
 	
 };

@@ -27,7 +27,9 @@ public:
 	
 	std::vector<string> years;
 	
-	vector <shared_ptr<Circle> > circles;
+	vector<Circle *> circles;
+	
+	//vector <shared_ptr<Circle> > circles;
 	
 };
 #endif /* YearState_hpp */
