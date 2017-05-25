@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include "ofMain.h"
 #include "State.hpp"
+#include "ofxCsv.h"
+#include "Circle.hpp"
 
 class YearState : public State {
 public:
@@ -20,6 +22,12 @@ public:
 	void update();
 	void draw();
 	void exit();
+	
+	ofxCsv csv;
+	
+	std::vector<string> years;
+	
+	vector <shared_ptr<Circle> > circles;
 	
 };
 #endif /* YearState_hpp */

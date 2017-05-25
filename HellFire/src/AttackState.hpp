@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "ofMain.h"
 #include "State.hpp"
+#include "ofxCsv.h"
 
 class AttackState : public State {
 public:

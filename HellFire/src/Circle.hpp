@@ -1,22 +1,22 @@
 //
-//  Circles.hpp
+//  Circle.hpp
 //  HellFire
 //
 //  Created by Ben Schulz on 5/23/17.
 //
 //
 
-#ifndef Circles_hpp
-#define Circles_hpp
+#ifndef Circle_hpp
+#define Circle_hpp
 
 #include <stdio.h>
 #include "ofMain.h"
 #include "ofxBox2d.h"
 
-class Circles : public ofBaseApp {
+class Circle : public ofBaseApp {
 	
 public:
-	Circles(string title, float radius);
+	Circle(string title, float radius);
 	
 	void setup();
 	void update();
@@ -30,11 +30,18 @@ public:
 	void mouseReleased(int x, int y, int button);
 	
 	ofxBox2d world;
-	ofxBox2dCircle circle;
+	ofxBox2dCircle circ;
+	
+	ofColor color;
+	
+	ofTrueTypeFont font;
 	
 	string title;
 	float radius;
 	
+	int xVel, yVel;
+	float pixelX, pixelY;
+	
 };
 
-#endif /* Circles_hpp */
+#endif /* Circle_hpp */

@@ -13,6 +13,7 @@
 #include "ofMain.h"
 #include "State.hpp"
 
+
 class StartState : public State {
 	public:
 	
@@ -20,6 +21,13 @@ class StartState : public State {
 	void update();
 	void draw();
 	void exit();
+	
+	void mouseMoved();
+	
+	ofTrueTypeFont titleFont;
+	ofTrueTypeFont textFont;
+	
+	ofColor buttonColor;
 	
 };
 

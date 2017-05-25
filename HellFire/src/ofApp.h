@@ -1,12 +1,13 @@
 #pragma once
 
 #include "ofMain.h"
-#include "Circles.hpp"
+#include "Circle.hpp"
 #include "StartState.hpp"
 #include "YearState.hpp"
 #include "MonthState.hpp"
 #include "AttackState.hpp"
 #include "ofxBox2d.h"
+#include "MovingAverage.hpp"
 
 
 class ofApp : public ofBaseApp{
@@ -22,6 +23,9 @@ class ofApp : public ofBaseApp{
 		void mouseDragged(int x, int y, int button);
 		void mousePressed(int x, int y, int button);
 		void mouseReleased(int x, int y, int button);
+	
+	ofVideoGrabber grabber;
+	ofxMovingAverage pixelX, pixelY;
 	
 	ofxBox2d world;
 	
