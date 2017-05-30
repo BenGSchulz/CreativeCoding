@@ -9,6 +9,9 @@
 #include "Circle.hpp"
 #include "ofApp.h"
 
+std::string Circle::yearSelected;
+std::string Circle::monthSelected;
+
 //--------------------------------------------------------------
 Circle::Circle(string title, float radius) {
 	this->title = title;
@@ -17,19 +20,12 @@ Circle::Circle(string title, float radius) {
 
 //--------------------------------------------------------------
 void Circle::setup(){
-//	ofApp *app = (ofApp*)ofGetAppPtr();
-//	world = app->world;
 	
 	x = ofRandom(ofGetWidth());
 	y = ofRandom(ofGetHeight());
 	
-	xVel = ofRandom(1, 3);
-	yVel = ofRandom(1, 3);
-
-//	ofxBox2dCircle::setup(world.getWorld(), x, y, radius);
-//	setPhysics(.5, 1, 1);
-
-//	setVelocity(xVel, yVel);
+	xVel = ofRandom(1, 2);
+	yVel = ofRandom(1, 2);
 	
 	color.set(127, 12, 0);
 	
@@ -44,10 +40,6 @@ void Circle::update(){
 	
 	x += xVel;
 	y += yVel;
-	
-//	world.update();
-	
-	//circ.setPosition(x, y);
 	
 	//Check laser location against the circle position
 //	if (ofDist(pixelX, pixelY, x, y) < radius) {
@@ -85,14 +77,6 @@ void Circle::update(){
 
 //--------------------------------------------------------------
 void Circle::draw(){
-//	glPushMatrix();
-//	glTranslatef(getPosition().x, getPosition().y, 0);
-//	
-//	ofSetColor(color);
-//	ofFill();
-//	ofDrawCircle(0, 0, getRadius());
-//	
-//	glPopMatrix();
 	
 	ofSetColor(color);
 	ofDrawCircle(x, y, radius);
@@ -115,29 +99,26 @@ void Circle::keyReleased(int key){
 void Circle::mouseMoved(int x, int y ){
 	if (ofDist(x, y, this->x, this->y) < radius) {
 		color.set(178, 17, 0);
+		inside = true;
+	} else {
+		color.set(127, 12, 0);
+		inside = false;
 	}
-}
-
-//--------------------------------------------------------------
-void Circle::mouseDragged(int x, int y, int button){
-	
-}
-
-//--------------------------------------------------------------
-void Circle::mousePressed(int x, int y, int button){
-	
 }
 
 //--------------------------------------------------------------
 void Circle::mouseReleased(int x, int y, int button){
 	ofApp *app = (ofApp *)ofGetAppPtr();
-	if (ofDist(x, y, this->x, this->y) < radius) {
+	if (inside) {
 		if (app->state == &app->startState) {
-			app->state == &app->yearState;
+			app->state = &app->yearState;
 		} else if (app->state == &app->yearState) {
-			app->state == &app->monthState;
+			yearSelected = title;
+			app->state = &app->monthState;
 		} else if (app->state == &app->monthState) {
-			app->state == &app->attackState;
+			monthSelected = title;
+			app->attackState.setup();
+			app->state = &app->attackState;
 		}
 	}
 }

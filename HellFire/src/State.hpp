@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include "ofMain.h"
 
-class State {
+class State : public ofBaseApp {
 
 	public:
 	
@@ -21,6 +21,10 @@ class State {
 	virtual void draw() = 0;
 	virtual void exit() = 0;
 
+	virtual void keyPressed(int key) = 0;
+	virtual void keyReleased(int key) = 0;
+	virtual void mouseMoved(int x, int y ) = 0;
+	virtual void mouseReleased(int x, int y, int button) = 0;
 	
 };
 

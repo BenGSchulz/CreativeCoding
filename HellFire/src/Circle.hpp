@@ -25,12 +25,7 @@ public:
 	void keyPressed(int key);
 	void keyReleased(int key);
 	void mouseMoved(int x, int y );
-	void mouseDragged(int x, int y, int button);
-	void mousePressed(int x, int y, int button);
 	void mouseReleased(int x, int y, int button);
-	
-//	ofxBox2d world;
-//	ofxBox2dCircle circ;
 	
 	ofColor color;
 	
@@ -43,6 +38,11 @@ public:
 	
 	int x, y, xVel, yVel;
 	float pixelX, pixelY;
+	
+	static std::string yearSelected;
+	static std::string monthSelected;
+	
+	bool inside = false;
 	
 };
 

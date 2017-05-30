@@ -23,13 +23,16 @@ public:
 	void draw();
 	void exit();
 	
+	void keyPressed(int key);
+	void keyReleased(int key);
+	void mouseMoved(int x, int y );
+	void mouseReleased(int x, int y, int button);
+	
 	ofxCsv csv;
 	
 	std::vector<string> years;
 	
 	vector<Circle *> circles;
-	
-	//vector <shared_ptr<Circle> > circles;
 	
 };
 #endif /* YearState_hpp */

@@ -13,6 +13,7 @@
 #include "ofMain.h"
 #include "State.hpp"
 #include "ofxCsv.h"
+#include "Circle.hpp"
 
 class MonthState : public State {
 public:
@@ -22,5 +23,15 @@ public:
 	void draw();
 	void exit();
 	
+	void keyPressed(int key);
+	void keyReleased(int key);
+	void mouseMoved(int x, int y );
+	void mouseReleased(int x, int y, int button);
+	
+	ofxCsv csv;
+	
+	std::vector<string> months;
+	
+	vector<Circle *> circles;
 };
 #endif /* MonthState_hpp */

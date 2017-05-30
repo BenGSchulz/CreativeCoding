@@ -2,13 +2,6 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-//	screenRect = ofRectangle(0,0,ofGetWidth(), ofGetHeight());
-	
-//	world.init();
-//	world.setGravity(0, 0);
-//	world.createBounds(screenRect);
-//	world.setFPS(60.0);
-//	world.registerGrabbing();
 	
 	grabber.setup(960, 720);
 	
@@ -18,7 +11,6 @@ void ofApp::setup(){
 	startState.setup();
 	yearState.setup();
 	monthState.setup();
-	attackState.setup();
 	
 	state = &startState;
 	
@@ -29,8 +21,6 @@ void ofApp::update(){
 	if (state != &startState) {
 		grabber.update();
 	}
-	
-//	world.update();
 
 	state->update();
 }
@@ -39,7 +29,7 @@ void ofApp::update(){
 void ofApp::draw(){
 	if (state != &startState) {
 		ofSetColor(255);
-		grabber.draw(0, 0, ofGetWidth(), ofGetHeight());
+		grabber.draw(ofGetWidth()/2, ofGetHeight()/2, ofGetWidth(), ofGetHeight());
 		
 		float maxBrightness = 0; // max brightness found when comparing
 		ofPoint brightest; // position of the current brightest pixel found
@@ -52,7 +42,7 @@ void ofApp::draw(){
 				
 				// compare this pixel's color to see if it's the
 				// current brightest pixel that is green, if so update the brightest pos
-				if(c.g > 200 && c.r < 100 && c.b < 100 && c.getBrightness() > maxBrightness) {
+				if(c.r > 200 && c.g < 50 && c.b < 50 && c.getBrightness() > maxBrightness) {
 					maxBrightness = c.getBrightness();
 					brightest.set(x, y);
 				}
@@ -72,30 +62,20 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+	state->keyPressed(key);
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
+	state->keyReleased(key);
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseDragged(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mousePressed(int x, int y, int button){
-
+	state->mouseMoved(x, y);
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-
+	state->mouseReleased(x, y, button);
 }

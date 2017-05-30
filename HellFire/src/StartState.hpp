@@ -21,13 +21,18 @@ class StartState : public State {
 	void update();
 	void draw();
 	void exit();
-	
-	void mouseMoved();
+
+	void keyPressed(int key);
+	void keyReleased(int key);
+	void mouseMoved(int x, int y );
+	void mouseReleased(int x, int y, int button);
 	
 	ofTrueTypeFont titleFont;
 	ofTrueTypeFont textFont;
 	
 	ofColor buttonColor;
+	
+	bool insideButton = false;
 	
 };
 

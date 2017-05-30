@@ -21,7 +21,6 @@ void StartState::setup(){
 
 //--------------------------------------------------------------
 void StartState::update(){
-	mouseMoved();
 }
 
 //--------------------------------------------------------------
@@ -47,22 +46,32 @@ void StartState::draw(){
 void StartState::exit(){
 }
 
-//--------------------------------------------------------------
-void StartState::mouseMoved() {
-	float x = ofGetMouseX();
-	float y = ofGetMouseY();
-	
-	if (!(x < (ofGetWidth()/2 - (textFont.stringWidth("Get Chart Tracks")+20)/2) || x > (ofGetWidth()/2 + (textFont.stringWidth("Get Chart Tracks")+20)/2) || y < ofGetHeight()/2-48 || y > ofGetHeight()/2+48)) {
-		
-		buttonColor.set(127, 0, 0);
-		
-		if (ofGetMousePressed()) {
-			ofApp *app = (ofApp *)ofGetAppPtr();
-			app->state = &app->yearState;
-		}
-		
-	} else {
-		buttonColor.set(179, 0, 0);
-	}
 
+//--------------------------------------------------------------
+void StartState::keyPressed(int key){
+	
+}
+
+//--------------------------------------------------------------
+void StartState::keyReleased(int key){
+	
+}
+
+//--------------------------------------------------------------
+void StartState::mouseMoved(int x, int y ){
+	if (!(x < (ofGetWidth()/2 - (textFont.stringWidth("Get Chart Tracks")+20)/2) || x > (ofGetWidth()/2 + (textFont.stringWidth("Get Chart Tracks")+20)/2) || y < ofGetHeight()/2-48 || y > ofGetHeight()/2+48)) {
+		buttonColor.set(127, 0, 0);
+		insideButton = true;
+	}
+	else {
+		buttonColor.set(179, 0, 0);
+		insideButton = false;
+	}
+}
+//--------------------------------------------------------------
+void StartState::mouseReleased(int x, int y, int button){
+	if (insideButton) {
+		ofApp *app = (ofApp *)ofGetAppPtr();
+		app->state = &app->yearState;
+	}
 }
