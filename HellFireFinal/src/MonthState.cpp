@@ -7,38 +7,49 @@
 //
 
 #include "MonthState.hpp"
+#include "ofApp.h"
 
 //--------------------------------------------------------------
 void MonthState::setup(){
 	year = Circle::yearSelected;
 	
-	
-	csv.load("DroneStrikes.csv");
-	for (int i = 0; i < 11; i++) {
-		months.push_back(csv.getRow(i).getString(1));
-	}
-	
-	std::vector<string>::iterator it;
-	it = std::unique(months.begin(), months.end());
-	
-	months.resize(std::distance(months.begin(), it));
-	
-	for (string year : months) {
-		ofLog() << year;
-		Circle *circ = new Circle(year, 7);
-		circ->setup();
-		circles.push_back(circ);
-	}
-	
-	for (int i = 0; i < circles.size(); i++) {
-		circles[i]->setup();
+	if (firstLoad) {
+		csv.load("DroneStrikes.csv");
+		for (int i = 0; i < 11; i++) {
+			months.push_back(csv.getRow(i).getString(1));
+		}
+		
+		std::vector<string>::iterator it;
+		it = std::unique(months.begin(), months.end());
+		
+		months.resize(std::distance(months.begin(), it));
+		
+		for (string year : months) {
+			ofLog() << year;
+			Circle *circ = new Circle(year, 7);
+			circ->setup();
+			circles.push_back(circ);
+		}
+		
+		for (int i = 0; i < circles.size(); i++) {
+			circles[i]->setup();
+		}
+		firstLoad = false;
 	}
 }
 
 //--------------------------------------------------------------
 void MonthState::update(){
+	//	ofApp *app = (ofApp*)ofGetAppPtr();
 	for (int i = 0; i < circles.size(); i++) {
 		circles[i]->update();
+		if (circles[i]->inside) {
+			target = true;
+			//			app->lock.setVolume(1);
+		} else {
+			target = false;
+			//			app->lock.setVolume(0);
+		}
 	}
 //	
 //	for (int i = 0; i < circles.size(); i++) {
@@ -75,6 +86,7 @@ void MonthState::update(){
 
 //--------------------------------------------------------------
 void MonthState::draw(){
+	ofApp *app = (ofApp*)ofGetAppPtr();
 	for (int i = 0; i < circles.size(); i++) {
 		circles[i]->draw();
 		
@@ -83,13 +95,18 @@ void MonthState::draw(){
 	ofPushMatrix();
 	ofSetColor(255);
 //	ofScale(3, 3);
-	ofDrawBitmapString("Year: " + year, 50, 30);
-	ofDrawBitmapString("Month: " + month, 250, 30);
+	ofDrawBitmapString("Year: " + year, ofGetWidth()/4, 30);
+	ofDrawBitmapString("Month: Specify Target", ofGetWidth()/2, 30);
+	ofDrawBitmapString("Laser: " + std::to_string(app->laser), 3*ofGetWidth()/4, 30);
 	ofPopMatrix();
 }
 
 //--------------------------------------------------------------
 void MonthState::exit(){
+	for (int i = 0; i < circles.size(); i++) {
+		delete circles[i];
+	}
+	circles.clear();
 }
 
 //--------------------------------------------------------------

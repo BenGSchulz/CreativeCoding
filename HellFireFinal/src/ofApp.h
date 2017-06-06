@@ -32,10 +32,16 @@ class ofApp : public ofBaseApp{
 	ofImage bg3;
 	ofImage overlay2;
 	
+	ofSoundPlayer drone;
+	ofSoundPlayer lock;
+	ofSoundPlayer fire;
+	
 	StartState startState;
 	YearState yearState;
 	MonthState monthState;
 	AttackState attackState;
+	
+	bool laser;
 	
 	State *state;
 	

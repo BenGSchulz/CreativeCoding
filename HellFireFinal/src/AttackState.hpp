@@ -35,6 +35,23 @@ public:
 	
 	int yearIndex, monthIndex;
 	std::string numAttacks, numDeaths, numChildren;
+	
+	int attacks, deaths, childrenI;
+	
+	float rand;
+	
+	ofColor buttonColor;
+	
+	ofSoundPlayer launch;
+	ofSoundPlayer impact;
+	
+	ofTrueTypeFont font;
+	
+	ofImage children;
+	ofImage aftermath;
+	ofImage backfire;
+	
+	bool start, childrenB, aftermathB, backfireB, inButton;
 
 };
 #endif /* AttackState_hpp */

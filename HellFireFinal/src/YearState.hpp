@@ -36,5 +36,6 @@ public:
 	
 	vector<Circle *> circles;
 	
+	bool target;
 };
 #endif /* YearState_hpp */

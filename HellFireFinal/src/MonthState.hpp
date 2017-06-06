@@ -36,5 +36,8 @@ public:
 	std::string month;
 	
 	vector<Circle *> circles;
+	
+	bool target, firstLoad;
+	
 };
 #endif /* MonthState_hpp */

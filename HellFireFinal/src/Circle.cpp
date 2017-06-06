@@ -42,12 +42,15 @@ void Circle::update(){
 	if (inside) {
 		if (app->state == &app->yearState) {
 			app->yearState.year = title;
+//			app->lock.setVolume(1);
 			
 		} else if (app->state == &app->monthState) {
 			app->monthState.month = title;
-			
+//			app->lock.setVolume(1);
 		}
+
 	} else {
+//		app->lock.setVolume(0);
 //		if (app->state == &app->yearState) {
 //			app->yearState.year = "Specify Target";
 //		} else if (app->state == &app->monthState) {
@@ -58,16 +61,16 @@ void Circle::update(){
 //	x += xVel;
 //	y += yVel;
 	
-	//Check laser location against the circle position
-//	if (ofDist(pixelX, pixelY, x, y) < radius) {
-//		if (app->state == &app->startState) {
-//			app->state == &app->yearState;
-//		} else if (app->state == &app->yearState) {
-//			app->state == &app->monthState;
-//		} else if (app->state == &app->monthState) {
-//			app->state == &app->attackState;
-//		}
-//	}
+//	Check laser location against the circle position
+	if (app->laser) {
+		if (ofDist(pixelX, pixelY, x, y) < radius) {
+			color.set(240, 200);
+			inside = true;
+		} else {
+			color.set(240, 100);
+			inside = false;
+		}
+	}
 	
 	
 //	if (x-radius < 0) {
@@ -99,7 +102,11 @@ void Circle::draw(){
 	ofDrawCircle(x, y, radius);
 	
 	if (inside) {
-		app->overlay2.draw(ofGetMouseX(), ofGetMouseY());
+		if (app->laser) {
+			app->overlay2.draw(pixelX, pixelY);
+		} else {
+			app->overlay2.draw(ofGetMouseX(), ofGetMouseY());
+		}
 	}
 	
 //	ofSetColor(100);
@@ -108,7 +115,24 @@ void Circle::draw(){
 
 //--------------------------------------------------------------
 void Circle::keyPressed(int key){
-	
+	ofApp *app = (ofApp *)ofGetAppPtr();
+	if (key == ' ') {
+		if (inside) {
+			if (app->state == &app->startState) {
+				app->state = &app->yearState;
+			} else if (app->state == &app->yearState) {
+				yearSelected = title;
+				app->fire.play();
+				app->monthState.setup();
+				app->state = &app->monthState;
+			} else if (app->state == &app->monthState) {
+				monthSelected = title;
+				app->fire.play();
+				app->attackState.setup();
+				app->state = &app->attackState;
+			}
+		}
+	}
 }
 
 //--------------------------------------------------------------
@@ -138,10 +162,12 @@ void Circle::mouseReleased(int x, int y, int button){
 			app->state = &app->yearState;
 		} else if (app->state == &app->yearState) {
 			yearSelected = title;
+			app->fire.play();
 			app->monthState.setup();
 			app->state = &app->monthState;
 		} else if (app->state == &app->monthState) {
 			monthSelected = title;
+			app->fire.play();
 			app->attackState.setup();
 			app->state = &app->attackState;
 		}

@@ -7,6 +7,7 @@
 //
 
 #include "YearState.hpp"
+#include "ofApp.h"
 
 //--------------------------------------------------------------
 void YearState::setup(){
@@ -30,12 +31,21 @@ void YearState::setup(){
 	for (int i = 0; i < circles.size(); i++) {
 		circles[i]->setup();
 	}
+	target = false;
 }
 
 //--------------------------------------------------------------
 void YearState::update(){
+//	ofApp *app = (ofApp*)ofGetAppPtr();
 	for (int i = 0; i < circles.size(); i++) {
 		circles[i]->update();
+		if (circles[i]->inside) {
+			target = true;
+//			app->lock.setVolume(1);
+		} else {
+			target = false;
+//			app->lock.setVolume(0);
+		}
 	}
 	
 //	for (int i = 0; i < circles.size(); i++) {
@@ -72,6 +82,7 @@ void YearState::update(){
 
 //--------------------------------------------------------------
 void YearState::draw(){
+	ofApp *app = (ofApp*)ofGetAppPtr();
 	for (int i = 0; i < circles.size(); i++) {
 		circles[i]->draw();
 		
@@ -79,9 +90,10 @@ void YearState::draw(){
 	
 	ofPushMatrix();
 	ofSetColor(255);
-//	ofScale(3, 3);
-	ofDrawBitmapString("Year: " + year, 50, 30);
-	ofDrawBitmapString("Month: Specify Target", 250, 30);
+	//	ofScale(3, 3);
+	ofDrawBitmapString("Year: " + year, ofGetWidth()/4, 30);
+	ofDrawBitmapString("Month: Specify Target", ofGetWidth()/2, 30);
+	ofDrawBitmapString("Laser: " + std::to_string(app->laser), 3*ofGetWidth()/4, 30);
 	ofPopMatrix();
 }
 
