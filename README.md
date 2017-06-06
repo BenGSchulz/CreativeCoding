@@ -33,11 +33,11 @@ EDPX 3701 Creative Coding
 
 * We were required to create a project with some sort of interaction and feedback for the users. 
 
-* My motivation was to provide more of a first-hand view of drone strikes. I wanted to replicate the behavior of a drone and immerse the user. The main inspiration of my work and the source of my data was Out of Sight, Out of Mind (http://www.drones.pitchinteractive.com/). Unfortunately, some of my goals were not able to be attained, like camera movement and cohesive laser interaction. 
+* My motivation was to provide more of a first-hand view of drone strikes. I wanted to replicate the behavior of a drone and immerse the user. The main inspiration of my work and the source of my data was Out of Sight, Out of Mind (http://www.drones.pitchinteractive.com/). Unfortunately, some of my goals were not able to be attained, like camera movement. The laser interaction is not fully fleshed-out. I could tweak it to make it easier and more responsive. 
 
 * BUILD - you only need ofxCsv addon for reading in the data. 
 
-* Right now, you can move the mouse and click with the MB1 to interact. Planning for laser interaction where mouse cursor is replaced by laser dot tracking. 
+* Right now, you can move the mouse and click with the MB1 to interact. Press ‘l’ key at any time to switch to laser control mode. Use the laser pointer in the camera to aim and press TAB on the pointer controller in place of MB1.  
 
 * Video : [Documentation video](https://youtu.be/dAdbl_3HXic)
 
