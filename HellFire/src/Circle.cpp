@@ -97,13 +97,21 @@ void Circle::keyReleased(int key){
 
 //--------------------------------------------------------------
 void Circle::mouseMoved(int x, int y ){
+	ofApp *app = (ofApp *)ofGetAppPtr();
 	if (ofDist(x, y, this->x, this->y) < radius) {
 		color.set(178, 17, 0);
 		inside = true;
+		
+		if (app->state == &app->yearState) {
+			app->yearState.year = title;
+		} else if (app->state == &app->monthState) {
+			app->monthState.month = title;
+		}
 	} else {
 		color.set(127, 12, 0);
 		inside = false;
 	}
+	
 }
 
 //--------------------------------------------------------------

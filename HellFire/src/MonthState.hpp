@@ -32,6 +32,9 @@ public:
 	
 	std::vector<string> months;
 	
+	std::string year;
+	std::string month;
+	
 	vector<Circle *> circles;
 };
 #endif /* MonthState_hpp */

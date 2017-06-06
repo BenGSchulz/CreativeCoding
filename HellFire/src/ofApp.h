@@ -24,7 +24,8 @@ class ofApp : public ofBaseApp{
 	ofVideoGrabber grabber;
 	ofxMovingAverage pixelX, pixelY;
 	
-	ofRectangle screenRect;
+	ofImage overlay;
+	ofImage video;
 	
 	StartState startState;
 	YearState yearState;

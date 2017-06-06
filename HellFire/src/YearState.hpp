@@ -32,6 +32,8 @@ public:
 	
 	std::vector<string> years;
 	
+	std::string year;
+	
 	vector<Circle *> circles;
 	
 };

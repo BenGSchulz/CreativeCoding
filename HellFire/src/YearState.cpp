@@ -74,7 +74,15 @@ void YearState::update(){
 void YearState::draw(){
 	for (int i = 0; i < circles.size(); i++) {
 		circles[i]->draw();
+		
 	}
+	
+	ofPushMatrix();
+	ofSetColor(100);
+	ofScale(3, 3);
+	ofDrawBitmapString("Year: " + year, 50, 50);
+	ofDrawBitmapString("Month: N/A", 100, 100);
+	ofPopMatrix();
 }
 
 //--------------------------------------------------------------

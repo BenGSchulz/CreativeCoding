@@ -5,6 +5,14 @@ void ofApp::setup(){
 	
 	grabber.setup(960, 720);
 	
+	overlay.load("overlay.png");
+	
+//	if (overlay.load("overlay.png")) {
+//		return;
+//	} else {
+//		ofLog() << "Image not loaded!";
+//	}
+	
 	pixelX.setSize(20);
 	pixelY.setSize(20);
 	
@@ -48,11 +56,17 @@ void ofApp::draw(){
 				}
 			}
 		}
+
+//		video.setFromPixels(pixels.getData(), (int)grabber.getWidth(), (int)grabber.getHeight(), OF_IMAGE_GRAYSCALE, true);
+
 		
 		// scale brightest pixel position from range within grabber image
 		// to range on the screen
 		pixelX = ofMap(brightest.x, 0, grabber.getWidth(), 0, ofGetWidth());
 		pixelY = ofMap(brightest.y, 0, grabber.getHeight(), 0, ofGetHeight());
+		
+//		overlay.draw(pixelX-overlay.width, pixelY-overlay.height);
+		overlay.draw(ofGetMouseX(), ofGetMouseY());
 	}
 	
 

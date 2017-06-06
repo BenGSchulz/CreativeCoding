@@ -10,6 +10,9 @@
 
 //--------------------------------------------------------------
 void MonthState::setup(){
+	year = Circle::yearSelected;
+	
+	
 	csv.load("DroneStrikes.csv");
 	for (int i = 0; i < 11; i++) {
 		months.push_back(csv.getRow(i).getString(1));
@@ -74,7 +77,15 @@ void MonthState::update(){
 void MonthState::draw(){
 	for (int i = 0; i < circles.size(); i++) {
 		circles[i]->draw();
+		
 	}
+	
+	ofPushMatrix();
+	ofSetColor(100);
+	ofScale(3, 3);
+	ofDrawBitmapString("Year: " + year, 50, 50);
+	ofDrawBitmapString("Month: " + month, 100, 50);
+	ofPopMatrix();
 }
 
 //--------------------------------------------------------------

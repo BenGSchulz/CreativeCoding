@@ -11,9 +11,8 @@
 
 #include <stdio.h>
 #include "ofMain.h"
-#include "ofxBox2d.h"
 
-class Circle : public ofBaseApp, ofxBox2dCircle {
+class Circle : public ofBaseApp {
 	
 public:
 	Circle(string title, float radius);

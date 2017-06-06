@@ -85,6 +85,10 @@ void AttackState::draw(){
 	ofDrawBitmapString("Number of attacks in " + month + "of " + year + ": " + numAttacks, ofGetWidth()/2, ofGetHeight()/4);
 	ofDrawBitmapString("Number of deaths in " + month + "of " + year + ": " + numDeaths, ofGetWidth()/2, ofGetHeight()/2);
 	ofDrawBitmapString("Number of child deaths in " + month + "of " + year + ": " + numChildren, ofGetWidth()/2, 3*ofGetHeight()/4);
+	
+	ofSetColor(100);
+	ofDrawBitmapString("Year: " + year, 50, 100);
+	ofDrawBitmapString("Month: " + month, 100, 100);
 }
 
 //--------------------------------------------------------------
