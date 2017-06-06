@@ -32,14 +32,14 @@ void StartState::draw(){
 	//gui.draw();
 	
 	ofSetColor(150);
-	titleFont.drawString("HellFIRE", ofGetWidth()/2-(titleFont.stringWidth("HellFIRE")/2), ofGetHeight()/3-50);
+	titleFont.drawString("HellFIRE", ofGetWidth()/2-(titleFont.stringWidth("HellFIRE")/2), ofGetHeight()/3-60);
 	ofDrawRectRounded(ofGetWidth()/2, 2*ofGetHeight()/3, textFont.stringWidth("Deploy Drone")+25, 80, 20);
 	
 	ofSetColor(buttonColor);
 	ofDrawRectRounded(ofGetWidth()/2, 2*ofGetHeight()/3, textFont.stringWidth("Deploy Drone")+20, 75, 20);
 	
 	ofSetColor(150);
-	textFont.drawString("Deploy Drone", ofGetWidth()/2-(textFont.stringWidth("Deploy Drone")/2), 2*ofGetHeight()/3+15);
+	textFont.drawString("Deploy Drone", ofGetWidth()/2-(textFont.stringWidth("Deploy Drone")/2), 2*ofGetHeight()/3+12);
 //	ofSetRectMode(OF_RECTMODE_CORNER);
 }
 

@@ -148,7 +148,7 @@ void AttackState::draw(){
 		
 		
 		ofSetColor(buttonColor);
-		ofDrawRectRounded(57, 32, 70, 15, 5);
+		ofDrawRectRounded(57, 27, 70, 20, 1);
 		
 		ofSetColor(100);
 		ofDrawBitmapString("Redeploy", 25, 30);
@@ -177,7 +177,7 @@ void AttackState::keyReleased(int key){
 
 //--------------------------------------------------------------
 void AttackState::mouseMoved(int x, int y ){
-	if (ofDist(x, y, 57, 52) < 25) {
+	if (ofDist(x, y, 57, 27) < 25) {
 		buttonColor.set(240, 250);
 		inButton = true;
 	} else {
