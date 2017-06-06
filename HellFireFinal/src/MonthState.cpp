@@ -124,7 +124,9 @@ void MonthState::mouseReleased(int x, int y, int button){
 
 //--------------------------------------------------------------
 void MonthState::keyPressed(int key){
-	
+	for (int i = 0; i < circles.size(); i++) {
+		circles[i]->keyPressed(key);
+	}
 }
 
 //--------------------------------------------------------------

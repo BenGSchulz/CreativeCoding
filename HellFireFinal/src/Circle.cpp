@@ -116,7 +116,8 @@ void Circle::draw(){
 //--------------------------------------------------------------
 void Circle::keyPressed(int key){
 	ofApp *app = (ofApp *)ofGetAppPtr();
-	if (key == ' ') {
+//	if (key == OF_KEY_PAGE_UP || key == OF_KEY_PAGE_DOWN) {
+	if (key == OF_KEY_TAB) {
 		if (inside) {
 			if (app->state == &app->startState) {
 				app->state = &app->yearState;
